@@ -82,19 +82,19 @@ const genTriangles = () => {
 
 // functions
 
-const increaseSize = () => {
-  if (tw != 200) {
-    while (svg.childNodes.length > 2) {
-      svg.removeChild(svg.lastChild);
-    }
-    tw *= 2;
-    th = tw;
-    sx = tw * -0.5;
-    sy = 0;
-    genTriangles();
-  } else {
-  }
-};
+// const increaseSize = () => {
+//   if (tw != 200) {
+//     while (svg.childNodes.length > 2) {
+//       svg.removeChild(svg.lastChild);
+//     }
+//     tw *= 2;
+//     th = tw;
+//     sx = tw * -0.5;
+//     sy = 0;
+//     genTriangles();
+//   } else {
+//   }
+// };
 
 const decreaseSize = () => {
   if (tw != 25) {
