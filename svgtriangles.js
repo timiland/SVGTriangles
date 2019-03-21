@@ -59,8 +59,11 @@ const genTriangles = () => {
   let cubeindex = 1;
   let isdwn = true;
 
+  //   1000,232.14285714285717 1100,232.14285714285717 1050,464.28571428571433
+  // tris dwntri cube1
+
   while (sy < 1000) {
-    while (sx <= 1000) {
+    while (!(sx > 900 && isdwn == false)) {
       poly.insertAdjacentHTML(
         'afterend',
         `<polygon class="tris ${isdwn ? 'dwntri' : 'uptri'} ${'cube' +
@@ -77,10 +80,13 @@ const genTriangles = () => {
         sx += tw;
       }
     }
-    sx -= cw + tw * 1.5;
+    sx -= cw + tw * 0.5;
     sy += th;
   }
 };
+
+// 950,0 1050,0 1000,274.72527472527474
+// 0,274.72527472527474 50,549.4505494505495 -50,549.4505494505495
 
 // functions
 
@@ -179,6 +185,17 @@ const cubes = () => {
   b.forEach(x => x.setAttribute('fill', 'blue'));
   let c = Array.from(document.querySelectorAll('.cube5,.cube6'));
   c.forEach(x => x.setAttribute('fill', 'green'));
+};
+
+const reset = () => {
+  while (svg.childNodes.length > 2) {
+    svg.removeChild(svg.lastChild);
+  }
+  colrestric = 5;
+  tw = 100;
+  sx = tw * -0.5;
+  sy = 0;
+  genTriangles();
 };
 
 const resize = () => {

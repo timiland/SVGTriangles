@@ -9,7 +9,7 @@ svg {
 .btn-circle.btn-xl {
   width: 70px;
   height: 70px;
-  padding: 10px 16px;
+  padding: 10px 10px;
   border-radius: 35px;
   font-size: 35px;
   line-height: 1.33;
@@ -18,10 +18,11 @@ svg {
 .btn-circle.btn-lg {
   width: 40px;
   height: 40px;
+  margin: 10px;
   padding: 6px 0px;
   border-radius: 20px;
   text-align: center;
-  font-size: 22px;
+  font-size: 25px;
   line-height: 1.42857;
 }
 
