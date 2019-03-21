@@ -4,12 +4,6 @@ cw = 1000;
 ch = 1000;
 //triangle width
 tw = 100;
-//triangle height
-
-// startign x
-var sx = tw * -0.5;
-// starting y
-var sy = 0;
 
 // fill colours
 const fillcols = [
@@ -42,39 +36,44 @@ svg.setAttribute('viewBox', `0 0 ${cw} ${ch}`);
 var poly = document.getElementById('polyinit');
 
 const genTriangles = () => {
+  console.log('Gen Triangles Successful');
   //Get Viewport Dimensions
   let vpw = window.innerWidth;
   let vph = window.innerHeight;
+  //aspect ratio
   let asprat = vpw / vph;
+  //triangle height
   th = tw * asprat;
-  var colindex = 0;
-  var cubeid = [1, 2, 3, 4, 5, 6];
-  let i = 0;
+  // startign x
+  let sx = tw * -0.5;
+  // starting y
+  let sy = 0;
+  // initialise colour index
+  let colindex = 0;
+  let cubeindex = 1;
+  let isdwn = true;
+
+  // let pointsdwn = `${sx},${sy} ${sx + tw},${sy} ${sx + tw * 0.5},${sy + th}`;
+  // let pointsup = `${sx + tw},${sy} ${sx + tw * 1.5},${sy + th} ${sx + tw * 0.5},${sy + th}`;
 
   while (sy < 1000) {
     while (sx <= 1000) {
       poly.insertAdjacentHTML(
         'afterend',
-        `<polygon class="tris dwntri ${'cube' + cubeid[i]}" fill="${
+        `<polygon class="tris dwntri ${'cube' + cubeindex}" fill="${
           fillcols[colindex]
-        }" fill="${fillcols[colindex]}" points="${sx},${sy} ${sx +
-          tw},${sy} ${sx + tw * 0.5},${sy + th}" onclick="chngCol()"></polygon>`
+        }" points="${isdwn ? sx : sx + tw},${sy} ${
+          isdwn ? sx + tw : sx + tw * 1.5
+        },${isdwn ? sy : sy + th} ${sx + tw * 0.5},${sy +
+          th}" onclick="chngCol()"></polygon>`
       );
       colindex + 1 >= colrestric ? (colindex = 0) : colindex++;
-      i >= cubeid.length - 1 ? (i = 0) : i++;
-
-      poly.insertAdjacentHTML(
-        'afterend',
-        `<polygon class="tris uptri ${'cube' + cubeid[i]}" fill="${
-          fillcols[colindex]
-        }" points="${sx + tw},${sy} ${sx + tw * 1.5},${sy + th} ${sx +
-          tw * 0.5},${sy + th}" onclick="chngCol()"></polygon>`
-      );
-      colindex + 1 >= colrestric ? (colindex = 0) : colindex++;
-      i >= cubeid.length - 1 ? (i = 0) : i++;
-      sx += tw;
+      cubeindex >= 6 ? (cubeindex = 1) : cubeindex++;
+      isdwn = !isdwn;
+      if (isdwn) {
+        sx += tw;
+      }
     }
-
     sx -= cw + tw * 1.5;
     sy += th;
   }
@@ -82,19 +81,19 @@ const genTriangles = () => {
 
 // functions
 
-// const increaseSize = () => {
-//   if (tw != 200) {
-//     while (svg.childNodes.length > 2) {
-//       svg.removeChild(svg.lastChild);
-//     }
-//     tw *= 2;
-//     th = tw;
-//     sx = tw * -0.5;
-//     sy = 0;
-//     genTriangles();
-//   } else {
-//   }
-// };
+const increaseSize = () => {
+  if (tw != 200) {
+    while (svg.childNodes.length > 2) {
+      svg.removeChild(svg.lastChild);
+    }
+    tw *= 2;
+    th = tw;
+    sx = tw * -0.5;
+    sy = 0;
+    genTriangles();
+  } else {
+  }
+};
 
 const decreaseSize = () => {
   if (tw != 25) {
@@ -177,24 +176,4 @@ const cubes = () => {
   b.forEach(x => x.setAttribute('fill', 'blue'));
   let c = Array.from(document.querySelectorAll('.cube5,.cube6'));
   c.forEach(x => x.setAttribute('fill', 'green'));
-};
-
-const reset = () => {
-  while (svg.childNodes.length > 2) {
-    svg.removeChild(svg.lastChild);
-  }
-  colrestric = 5;
-  tw = 100;
-  sx = tw * -0.5;
-  sy = 0;
-  genTriangles();
-};
-
-const resize = () => {
-  while (svg.childNodes.length > 2) {
-    svg.removeChild(svg.lastChild);
-  }
-  sx = tw * -0.5;
-  sy = 0;
-  genTriangles();
 };
