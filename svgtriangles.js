@@ -194,8 +194,6 @@ const reset = () => {
   }
   colrestric = 5;
   tw = 100;
-  sx = tw * -0.5;
-  sy = 0;
   genTriangles();
 };
 
@@ -203,7 +201,5 @@ const resize = () => {
   while (svg.childNodes.length > 2) {
     svg.removeChild(svg.lastChild);
   }
-  sx = tw * -0.5;
-  sy = 0;
   genTriangles();
 };
