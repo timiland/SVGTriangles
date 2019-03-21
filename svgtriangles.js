@@ -51,7 +51,7 @@ const genTriangles = () => {
   //triangle height
   th = tw * asprat;
   // startign x
-  let sx = tw * -0.5;
+  let sx = 0;
   // starting y
   let sy = 0;
   // initialise colour index
@@ -61,17 +61,22 @@ const genTriangles = () => {
 
   //   1000,232.14285714285717 1100,232.14285714285717 1050,464.28571428571433
   // tris dwntri cube1
+  // !(sx >= 1000 && isdwn == false)
 
   while (sy < 1000) {
-    while (!(sx > 900 && isdwn == false)) {
+    while (
+      !(
+        (sx >= 1000 && isdwn == false) ||
+        (sx >= 1000 + tw * 0.5 && isdwn == true)
+      )
+    ) {
       poly.insertAdjacentHTML(
         'afterend',
         `<polygon class="tris ${isdwn ? 'dwntri' : 'uptri'} ${'cube' +
-          cubeindex}" fill="${fillcols[colindex]}" points="${
-          isdwn ? sx : sx + tw
-        },${sy} ${isdwn ? sx + tw : sx + tw * 1.5},${
+          cubeindex}" fill="${fillcols[colindex]}" points="${sx},${sy +
+          th} ${sx + tw * 0.5},${sy} ${isdwn ? sx - 0.5 * tw : sx + tw},${
           isdwn ? sy : sy + th
-        } ${sx + tw * 0.5},${sy + th}" onclick="chngCol()"></polygon>`
+        }" onclick="chngCol()"></polygon>`
       );
       colindex + 1 >= colrestric ? (colindex = 0) : colindex++;
       cubeindex >= 6 ? (cubeindex = 1) : cubeindex++;
@@ -80,10 +85,15 @@ const genTriangles = () => {
         sx += tw;
       }
     }
-    sx -= cw + tw * 0.5;
+
+    isdwn ? (sx = 0) : (sx = tw * -0.5);
+    // sx -= cw + tw * 0.5;
     sy += th;
   }
 };
+
+// DOWN ${sx},${sy+tw} ${sx + tw},${sy} ${sx + tw * 0.5},${sy + th}
+// UP ${sx + tw},${sy} ${sx + tw * 1.5},${sy + th} ${sx + tw * 0.5},${sy + th}
 
 // 950,0 1050,0 1000,274.72527472527474
 // 0,274.72527472527474 50,549.4505494505495 -50,549.4505494505495
