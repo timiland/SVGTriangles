@@ -24,7 +24,13 @@ const fillcols = [
   'gold',
   'indigo',
   'gainsboro',
-  'red'
+  'coral',
+  'darkgreen',
+  'peachpuff',
+  'skyblue',
+  'springgreen',
+  'dimgray',
+  'rosybrown'
 ];
 
 var colrestric = 5;
@@ -53,19 +59,16 @@ const genTriangles = () => {
   let cubeindex = 1;
   let isdwn = true;
 
-  // let pointsdwn = `${sx},${sy} ${sx + tw},${sy} ${sx + tw * 0.5},${sy + th}`;
-  // let pointsup = `${sx + tw},${sy} ${sx + tw * 1.5},${sy + th} ${sx + tw * 0.5},${sy + th}`;
-
   while (sy < 1000) {
     while (sx <= 1000) {
       poly.insertAdjacentHTML(
         'afterend',
-        `<polygon class="tris dwntri ${'cube' + cubeindex}" fill="${
-          fillcols[colindex]
-        }" points="${isdwn ? sx : sx + tw},${sy} ${
-          isdwn ? sx + tw : sx + tw * 1.5
-        },${isdwn ? sy : sy + th} ${sx + tw * 0.5},${sy +
-          th}" onclick="chngCol()"></polygon>`
+        `<polygon class="tris ${isdwn ? 'dwntri' : 'uptri'} ${'cube' +
+          cubeindex}" fill="${fillcols[colindex]}" points="${
+          isdwn ? sx : sx + tw
+        },${sy} ${isdwn ? sx + tw : sx + tw * 1.5},${
+          isdwn ? sy : sy + th
+        } ${sx + tw * 0.5},${sy + th}" onclick="chngCol()"></polygon>`
       );
       colindex + 1 >= colrestric ? (colindex = 0) : colindex++;
       cubeindex >= 6 ? (cubeindex = 1) : cubeindex++;
@@ -176,4 +179,13 @@ const cubes = () => {
   b.forEach(x => x.setAttribute('fill', 'blue'));
   let c = Array.from(document.querySelectorAll('.cube5,.cube6'));
   c.forEach(x => x.setAttribute('fill', 'green'));
+};
+
+const resize = () => {
+  while (svg.childNodes.length > 2) {
+    svg.removeChild(svg.lastChild);
+  }
+  sx = tw * -0.5;
+  sy = 0;
+  genTriangles();
 };
