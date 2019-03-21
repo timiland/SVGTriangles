@@ -26,7 +26,6 @@ const fillcols = [
   'gainsboro',
   'coral',
   'darkgreen',
-  'peachpuff',
   'skyblue',
   'springgreen',
   'dimgray',
@@ -59,10 +58,6 @@ const genTriangles = () => {
   let cubeindex = 1;
   let isdwn = true;
 
-  //   1000,232.14285714285717 1100,232.14285714285717 1050,464.28571428571433
-  // tris dwntri cube1
-  // !(sx >= 1000 && isdwn == false)
-
   while (sy < 1000) {
     while (
       !(
@@ -85,18 +80,10 @@ const genTriangles = () => {
         sx += tw;
       }
     }
-
     isdwn ? (sx = 0) : (sx = tw * -0.5);
-    // sx -= cw + tw * 0.5;
     sy += th;
   }
 };
-
-// DOWN ${sx},${sy+tw} ${sx + tw},${sy} ${sx + tw * 0.5},${sy + th}
-// UP ${sx + tw},${sy} ${sx + tw * 1.5},${sy + th} ${sx + tw * 0.5},${sy + th}
-
-// 950,0 1050,0 1000,274.72527472527474
-// 0,274.72527472527474 50,549.4505494505495 -50,549.4505494505495
 
 // functions
 
@@ -189,12 +176,16 @@ const changeUps = () => {
 };
 
 const cubes = () => {
+  let rancola = fillcols[Math.floor(Math.random() * fillcols.length)];
+  let rancolb = fillcols[Math.floor(Math.random() * fillcols.length)];
+  let rancolc = fillcols[Math.floor(Math.random() * fillcols.length)];
+  console.log(rancola, rancolb, rancolc);
   let a = Array.from(document.querySelectorAll('.cube2,.cube3'));
-  a.forEach(x => x.setAttribute('fill', 'red'));
+  a.forEach(x => x.setAttribute('fill', rancola));
   let b = Array.from(document.querySelectorAll('.cube1,.cube4'));
-  b.forEach(x => x.setAttribute('fill', 'blue'));
+  b.forEach(x => x.setAttribute('fill', rancolb));
   let c = Array.from(document.querySelectorAll('.cube5,.cube6'));
-  c.forEach(x => x.setAttribute('fill', 'green'));
+  c.forEach(x => x.setAttribute('fill', rancolc));
 };
 
 const reset = () => {
