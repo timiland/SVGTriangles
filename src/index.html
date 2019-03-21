@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SVG Triangles</title>
+    <!-- BOOTSTRAP -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <!-- FONT AWESOME -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+    <!-- CUSTOM CSS -->
+    <link rel="stylesheet" type="text/css" href="svgtriangles.css" />
+    <meta charset="UTF-8" />
+  </head>
+
+  <body onload="genTriangles()" onresize="resize()">
+    <div id="toolbox">
+      <button
+        class="btn btn-light btn-circle btn-xl"
+        type="button"
+        data-toggle="collapse"
+        data-target="#multiCollapseExample1"
+        aria-expanded="false"
+        aria-controls="multiCollapseExample1"
+      >
+        <i class="fas fa-wrench"></i>
+      </button>
+      <p></p>
+      <div class="row">
+        <div class="col">
+          <div class="collapse multi-collapse" id="multiCollapseExample1">
+            <div class="card card-body">
+              <!-- Dropdown Tools -->
+<div class="optionbox"><p>Change Triangle Size</p>
+<button type="button" onclick="increaseSize()" class="btn btn-light btn-circle btn-lg"><i class="fa fa-arrow-up"></i>
+<button type="button" onclick="decreaseSize()" class="btn btn-light btn-circle btn-lg"><i class="fa fa-arrow-down"></i>
+</div>
+<hr>
+<div class="optionbox"><p>Change Number of Colours</p>
+<button type="button" onclick="increaseCols()" class="btn btn-light btn-circle btn-lg"><i class="fa fa-arrow-up"></i>
+<button type="button" onclick="decreaseCols()" class="btn btn-light btn-circle btn-lg"><i class="fa fa-arrow-down"></i>
+</div>
+<hr>
+<div class="optionbox">
+  <button type="button" onclick="changeUps()" class="btn btn-light">Change Up Triangles</button>
+  </div>
+  <hr>
+<div class="optionbox">
+  <button type="button" onclick="changeDowns()" class="btn btn-light">Change Down Triangles</button>
+  </div>
+  <hr>
+  <div class="optionbox">
+      <button type="button" onclick="cubes()" class="btn btn-light">Make Cubes!</button>
+      </div>
+      <hr>
+  <div class="optionbox">
+      <button type="button" onclick="reset()" class="btn btn-dark">Reset</button>
+      </div>
+             
+              <!-- End of Dropdown Tools -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ORIGINAL WORKING CODE -->
+    <div class="container">
+      <svg
+        id="svgcanv"
+        x="0"
+        y="0"
+        width="100vw"
+        height="100vh"
+        preserveAspectRatio="none"
+      >
+        <polygon id="polyinit"></polygon>
+      </svg>
+    </div>
+    <!-- END OF -->
+    <!-- Bootstrap -->
+    <script src="svgtriangles.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
