@@ -32,7 +32,24 @@ const fillcols = [
   'rosybrown'
 ];
 
+const gradfills = [
+  'url(#grad1)',
+  'url(#grad2)',
+  'url(#grad3)',
+  'url(#grad4)',
+  'url(#grad5)',
+  'url(#grad6)',
+  'url(#grad7)',
+  'url(#grad8)',
+  'url(#grad9)',
+  'url(#grad10)',
+  'url(#grad11)',
+  'url(#grad12)'
+];
+
 var colrestric = 5;
+
+var fill = fillcols;
 
 var svg = document.getElementById('svgcanv');
 
@@ -68,8 +85,8 @@ const genTriangles = () => {
       poly.insertAdjacentHTML(
         'afterend',
         `<polygon class="tris ${isdwn ? 'dwntri' : 'uptri'} ${'cube' +
-          cubeindex}" fill="${fillcols[colindex]}" points="${sx},${sy +
-          th} ${sx + tw * 0.5},${sy} ${isdwn ? sx - 0.5 * tw : sx + tw},${
+          cubeindex}" fill="${fill[colindex]}" points="${sx},${sy + th} ${sx +
+          tw * 0.5},${sy} ${isdwn ? sx - 0.5 * tw : sx + tw},${
           isdwn ? sy : sy + th
         }" onclick="chngCol()"></polygon>`
       );
@@ -116,7 +133,7 @@ const decreaseSize = () => {
 };
 
 const increaseCols = () => {
-  if (colrestric != fillcols.length) {
+  if (colrestric != fill.length) {
     while (svg.childNodes.length > 2) {
       svg.removeChild(svg.lastChild);
     }
@@ -186,6 +203,14 @@ const cubes = () => {
   b.forEach(x => x.setAttribute('fill', rancolb));
   let c = Array.from(document.querySelectorAll('.cube5,.cube6'));
   c.forEach(x => x.setAttribute('fill', rancolc));
+};
+
+const gradients = () => {
+  while (svg.childNodes.length > 2) {
+    svg.removeChild(svg.lastChild);
+  }
+  fill = gradfills;
+  genTriangles();
 };
 
 const reset = () => {
