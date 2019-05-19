@@ -209,6 +209,7 @@ const gradients = () => {
   while (svg.childNodes.length > 2) {
     svg.removeChild(svg.lastChild);
   }
+  colrestric = 5;
   fill = gradfills;
   genTriangles();
 };
@@ -217,6 +218,7 @@ const reset = () => {
   while (svg.childNodes.length > 2) {
     svg.removeChild(svg.lastChild);
   }
+  fill = fillcols;
   colrestric = 5;
   tw = 100;
   genTriangles();

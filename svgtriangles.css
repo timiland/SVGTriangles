@@ -1,40 +1,143 @@
-svg {
+#svgcanv {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: -1;
 }
+
+#graddefs {
+  position: absolute;
+  z-index: -1;
+}
+
+/* svg:hover {
+  transform: scale(2);
+} */
 polygon {
   stroke: black;
   stroke-width: 1;
 }
-.btn-circle.btn-xl {
-  width: 70px;
-  height: 70px;
-  padding: 10px 10px;
-  border-radius: 35px;
-  font-size: 35px;
-  line-height: 1.33;
-}
 
 .custbtn {
-  width: 45%;
+  width: 40%;
   font-size: 20px;
+  margin-right: 5%;
 }
 .custbtnl {
   margin-right: 10%;
+  margin-left: 5%;
+}
+
+.btnfw {
+  width: 90%;
+  margin-right: 5%;
+  margin-left: 5%;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1em;
+  font-weight: 300;
+  line-height: 1.7em;
+  margin: 0;
 }
 
 .optionbox {
-  display: inline-block;
   text-align: center;
+  width: 100%;
+  margin: 0;
 }
 
-#toolbox {
+/*
+    DEMO STYLE
+*/
+
+@import 'https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700';
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #fafafa;
+}
+
+p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1em;
+  font-weight: 300;
+  line-height: 1.7em;
+  margin: 0;
+}
+
+.navbar {
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+#sidebar {
+  width: 250px;
   position: fixed;
-  left: 30px;
-  top: 30px;
-  z-index: 1;
-  padding-right: 30px;
+  top: 0;
+  left: -250px;
+  height: 100vh;
+  z-index: 999;
+  /* background: #343746; */
+  /* color: #fff; */
+  transition: all 0.3s;
+  overflow-y: scroll;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+#sidebar.active {
+  left: 0;
+}
+
+#dismiss {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  color: #fff;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+#dismiss:hover {
+  background: #fff;
+  color: #999999;
+}
+
+#sidebar .sidebar-header {
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+  /* background: #6d7fcc; */
+}
+
+#sidebar ul p {
+  color: #fff;
+  padding-bottom: 10px;
+}
+@media screen and (max-width: 600px) {
+  #sidebarCollapse {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2em;
+    font-weight: 300;
+    line-height: 1.7em;
+    margin: 0;
+    width: 35%;
+  }
+}
+
+#content {
+  padding: 20px;
+  transition: all 0.3s;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
 }

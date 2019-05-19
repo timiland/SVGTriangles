@@ -1,30 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <title>SVG Triangles</title>
-    <!-- BOOTSTRAP -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Collapsible sidebar using Bootstrap 4</title>
+
+    <!-- Bootstrap CSS CDN -->
     <link
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+      integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
       crossorigin="anonymous"
     />
-    <!-- FONT AWESOME -->
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="style3.css" />
+    <!-- Scrollbar Custom CSS -->
     <link
       rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-      crossorigin="anonymous"
+      href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css"
     />
-    <!-- CUSTOM CSS -->
-    <link rel="stylesheet" type="text/css" href="svgtriangles.css" />
-    <meta charset="UTF-8" />
-  </head>
 
-  <body onload="genTriangles()" onresize="resize()">
-
+    <!-- Font Awesome JS -->
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+      integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+      integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+      crossorigin="anonymous"
+    ></script>
     <!-- SVG GRADIENT DEFS -->
-    <svg>
+    <svg id="graddefs">
       <defs>
         <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" style="stop-color:red;stop-opacity:1" />
@@ -78,89 +90,122 @@
   </svg>
 
 
-    <div id="toolbox">
-      <button
-        class="btn btn-light btn-circle btn-xl"
-        type="button"
-        data-toggle="collapse"
-        data-target="#multiCollapseExample1"
-        aria-expanded="false"
-        aria-controls="multiCollapseExample1"
-      >
-        <i class="fas fa-wrench"></i>
-      </button>
-      <p></p>
-      <div class="row">
-        <div class="col">
-          <div class="collapse multi-collapse" id="multiCollapseExample1">
-            <div class="card card-body">
-              <!-- Dropdown Tools -->
-<div class="optionbox"><p>Change Triangle Siizee</p>
-<button type="button" onclick="increaseSize()" class="btn btn-light custbtn custbtnl"><i class="fas fa-plus"></i>
-<button type="button" onclick="decreaseSize()" class="btn btn-light custbtn"><i class="fas fa-minus"></i>
-</div>
-<hr>
-<div class="optionbox"><p>Change Number of Colours</p>
-<button type="button" onclick="increaseCols()" class="btn btn-light custbtn custbtnl"><i class="fas fa-plus"></i>
-<button type="button" onclick="decreaseCols()" class="btn btn-light custbtn"><i class="fas fa-minus"></i>
-</div>
-<hr>
-<div class="optionbox">
-  <button type="button" onclick="changeUps()" class="btn btn-light">Change Up Triangles</button>
-  </div>
-  <hr>
-<div class="optionbox">
-  <button type="button" onclick="changeDowns()" class="btn btn-light">Change Down Triangles</button>
-  </div>
-  <hr>
-  <div class="optionbox">
-      <button type="button" onclick="cubes()" class="btn btn-light">Make Cubes!</button>
-      </div>
-      <hr>
-  <div class="optionbox">
-      <button type="button" onclick="reset()" class="btn btn-dark">Reset</button>
-      </div>
-      <hr>
-  <div class="optionbox">
-        <button type="button" onclick="gradients()" class="btn btn-dark">Gradient Fills</button>
+  </head>
+
+  <body onload="genTriangles()" onresize="resize()">
+
+    
+
+
+    <div class="wrapper">
+      <!-- Sidebar  -->
+      <nav id="sidebar" class="bg-dark">
+        <div id="dismiss" class="bg-dark">
+          <i class="fas fa-arrow-left"></i>
         </div>
-             
-              <!-- End of Dropdown Tools -->
+
+        <div class="sidebar-header bg-light">
+          <h3>Options</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+          <!-- <hr> -->
+            <div class="optionbox"><p>Change Triangle Size</p>
+                <button type="button" onclick="increaseSize()" class="btn btn-light custbtn custbtnl"><i class="fas fa-plus"></i>
+                <button type="button" onclick="decreaseSize()" class="btn btn-light custbtn"><i class="fas fa-minus"></i>
+                </div>
+                <hr>
+                <div class="optionbox"><p>Change Number of Colours</p>
+                <button type="button" onclick="increaseCols()" class="btn btn-light custbtn custbtnl"><i class="fas fa-plus"></i>
+                <button type="button" onclick="decreaseCols()" class="btn btn-light custbtn"><i class="fas fa-minus"></i>
+                </div>
+                <hr>
+                <div class="optionbox">
+                  <button type="button" onclick="changeUps()" class="btn btn-light btnfw">Change Up Triangles</button>
+                  </div>
+                  <hr>
+                <div class="optionbox">
+                  <button type="button" onclick="changeDowns()" class="btn btn-light btnfw">Change Down Triangles</button>
+                  </div>
+                  <hr>
+                  <div class="optionbox">
+                      <button type="button" onclick="cubes()" class="btn btn-light btnfw">Make Cubes!</button>
+                      </div>
+                      <hr>
+                      <div class="optionbox">
+                        <button type="button" onclick="gradients()" class="btn btn-light btnfw">Gradient Fills</button>
+                        </div>
+                        <hr>
+                  <div class="optionbox">
+                      <button type="button" onclick="reset()" class="btn btn-success btnfw">Reset</button>
+                      </div>
+
+        </ul>
+      </nav>
+      </div>
+
+      <!-- Page Content  -->
+      <div id="content">
+            <button type="button" id="sidebarCollapse" class="btn btn-light btn-lg">
+              <i class="fas fa-wrench"></i>
+              <span> Tools</span>
+            </button>
+            <div class="container">
+              <svg
+                id="svgcanv"
+                x="0"
+                y="0"
+                width="100vw"
+                height="100vh"
+                preserveAspectRatio="none"
+              >
+                <polygon id="polyinit"></polygon>
+              </svg>
             </div>
-          </div>
-        </div>
-      </div>
+            <!-- END OF -->
+            <!-- Bootstrap -->
+            <script src="navbar.js"></script>
     </div>
-    <!-- ORIGINAL WORKING CODE -->
-    <div class="container">
-      <svg
-        id="svgcanv"
-        x="0"
-        y="0"
-        width="100vw"
-        height="100vh"
-        preserveAspectRatio="none"
-      >
-        <polygon id="polyinit"></polygon>
-      </svg>
-    </div>
-    <!-- END OF -->
-    <!-- Bootstrap -->
-    <script src="svgtriangles.js"></script>
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
       crossorigin="anonymous"
     ></script>
+    <!-- Popper.JS -->
     <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+      integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
       crossorigin="anonymous"
     ></script>
+    <!-- Bootstrap JS -->
     <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+      integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
       crossorigin="anonymous"
     ></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#sidebar').mCustomScrollbar({
+          theme: 'minimal'
+        });
+
+        $('#dismiss, .overlay').on('click', function() {
+          $('#sidebar').removeClass('active');
+          $('.overlay').removeClass('active');
+        });
+
+        $('#sidebarCollapse').on('click', function() {
+          $('#sidebar').addClass('active');
+          $('.overlay').addClass('active');
+          $('.collapse.in').toggleClass('in');
+          $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+      });
+    </script>
   </body>
 </html>
