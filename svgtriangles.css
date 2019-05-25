@@ -131,17 +131,16 @@ p {
     margin: 0;
     width: 35%;
   }
-  .sidebar-header {
-    padding: 15px;
-    margin-bottom: 10px;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
-    /* background: #6d7fcc; */
+  #dismiss {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.5em;
   }
-  /* #sidebar {
-    width: 30%;
-  } */
+
   hr {
-    line-height: 0.5em;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 }
 
